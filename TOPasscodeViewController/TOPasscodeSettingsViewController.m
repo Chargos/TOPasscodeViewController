@@ -150,7 +150,7 @@ const CGFloat kTOPasscodeKeypadMaxHeight = 330.0f;
     self.optionsButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [self.optionsButton sizeToFit];
     [self.optionsButton addTarget:self action:@selector(optionsCodeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.optionsButton];
+  //  [self.view addSubview:self.optionsButton];
 
     // Add callbacks for the keypad view
     self.keypadView.numberButtonTappedHandler = ^(NSInteger number) {
@@ -228,7 +228,7 @@ const CGFloat kTOPasscodeKeypadMaxHeight = 330.0f;
             }
             break;
         case TOPasscodeSettingsViewStateEnterNewPasscode:
-            self.titleLabel.text = NSLocalizedString(@"Enter a new passcode", @"");
+            self.titleLabel.text = NSLocalizedString(@"Create your 4-digits code", @"");
             self.navigationItem.rightBarButtonItem = variableSizePasscode ? self.nextBarButtonItem : nil;
             if (@available(iOS 9.0, *)) {
                 self.inputField.returnKeyType = UIReturnKeyContinue;
@@ -238,7 +238,7 @@ const CGFloat kTOPasscodeKeypadMaxHeight = 330.0f;
             }
             break;
         case TOPasscodeSettingsViewStateConfirmNewPasscode:
-            self.titleLabel.text = NSLocalizedString(@"Confirm new passcode", @"");
+            self.titleLabel.text = NSLocalizedString(@"Confirm code", @"");
             self.navigationItem.rightBarButtonItem = variableSizePasscode ? self.doneBarButtonItem : nil;
             self.inputField.returnKeyType = UIReturnKeyDone;
             break;
@@ -419,12 +419,12 @@ const CGFloat kTOPasscodeKeypadMaxHeight = 330.0f;
 
     // Set background color
     UIColor *backgroundColor;
-    if (isDark) {
-        backgroundColor = [UIColor colorWithWhite:0.15f alpha:1.0f];
-    }
-    else {
-        backgroundColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:241.0f/255.0f alpha:1.0f];
-    }
+//    if (isDark) {
+    backgroundColor = _backgroundColor;
+//    }
+//    else {
+//        backgroundColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:241.0f/255.0f alpha:1.0f];
+//    }
     self.view.backgroundColor = backgroundColor;
 
     // Set the style of the keypad view
@@ -434,10 +434,10 @@ const CGFloat kTOPasscodeKeypadMaxHeight = 330.0f;
     UIColor *inputColor = isDark ? [UIColor whiteColor] : [UIColor blackColor];
 
     // Set the label style
-    self.titleLabel.textColor = inputColor;
+    self.titleLabel.textColor = _textColor;
 
     // Set the number input tint
-    self.inputField.tintColor = inputColor;
+    self.inputField.tintColor = _buttonColor;
 
     // Set the tint color of the incorrect warning label
     UIColor *warningColor = nil;

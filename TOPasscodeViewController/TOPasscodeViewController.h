@@ -82,9 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** Will show a 'Touch ID' or 'Face ID' (depending on `biometricType`) button if the user is allowed to log in that way. (Default is NO) */
 @property (nonatomic, assign) BOOL allowBiometricValidation;
 
-/** Will show a default 'Cancel' button if rightAccessoryButton is not set. (Default is YES) */
-@property (nonatomic, assign) BOOL allowCancel;
-
 /** Set the type of biometrics for this device to update the title of the biometrics button properly. */
 @property (nonatomic, assign) TOPasscodeBiometryType biometryType;
 
@@ -96,9 +93,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** Optionally change the tint color of the UI element that indicates input progress (eg the row of circles) */
 @property (nonatomic, strong, nullable) UIColor *inputProgressViewTintColor;
-
-/** Optionally enable or disable showing the lettering label of all keypad circle buttons. **/
-@property (nonatomic, assign) BOOL keypadButtonShowLettering;
 
 /** If the style isn't translucent, changes the tint color of the keypad circle button outlines. */
 @property (nonatomic, strong, nullable) UIColor *keypadButtonBackgroundTintColor;
@@ -156,9 +150,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-//! Project version number for TOPasscodeViewController.
-FOUNDATION_EXPORT double TOPasscodeViewControllerVersionNumber;
-
-//! Project version string for TOPasscodeViewController.
-FOUNDATION_EXPORT const unsigned char TOPasscodeViewControllerVersionString[];

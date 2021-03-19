@@ -104,14 +104,11 @@
         TOPasscodeCircleButton *circleButton = [self makeCircleButtonWithNumber:buttonNumber letteringString:letteringString];
         [self addSubview:circleButton];
         [buttons addObject:circleButton];
-        
-        if (!self.showLettering) {
-            circleButton.buttonLabel.verticallyCenterNumberLabel = YES; // Center the digit in the middle
-        }
 
         // Hang onto the 0 button if it's the vertical one
         // And center the text
         if (i == 9) {
+            circleButton.buttonLabel.verticallyCenterNumberLabel = YES; // Center the 0 in the middle
             self.verticalZeroButton = circleButton;
 
             // Hide the button if it's not vertically laid out
@@ -230,7 +227,7 @@
 - (UIImage *)tappedButtonImage
 {
     if (!_tappedButtonImage) {
-        _tappedButtonImage = [TOPasscodeCircleImage circleImageOfSize:self.buttonDiameter inset:self.buttonStrokeWidth * 0.5f padding:1.0f antialias:YES];
+        _tappedButtonImage = [TOPasscodeCircleImage circleImageOfSize:self.buttonDiameter inset:self.buttonStrokeWidth * 0.5f padding:1.0f antialias:NO];
     }
 
     return _tappedButtonImage;
@@ -275,13 +272,13 @@
     self.horizontalZeroButton.contentAlpha = _horizontalLayout ? 0.0f : 1.0f;
 
     void (^animationBlock)(void) = ^{
-        self.verticalZeroButton.contentAlpha = self.horizontalLayout ? 0.0f : 1.0f;
-        self.horizontalZeroButton.contentAlpha = self.horizontalLayout ? 1.0f : 0.0f;
+        self.verticalZeroButton.contentAlpha = _horizontalLayout ? 0.0f : 1.0f;
+        self.horizontalZeroButton.contentAlpha = _horizontalLayout ? 1.0f : 0.0f;
     };
 
     void (^completionBlock)(BOOL) = ^(BOOL complete) {
-        self.verticalZeroButton.hidden = self.horizontalLayout;
-        self.horizontalZeroButton.hidden = self.horizontalLayout;
+        self.verticalZeroButton.hidden = _horizontalLayout;
+        self.horizontalZeroButton.hidden = !_horizontalLayout;
     };
 
     // Don't animate if not needed
@@ -307,10 +304,6 @@
         circleButton.tintColor = self.buttonBackgroundColor;
         circleButton.textColor = self.buttonTextColor;
         circleButton.highlightedTextColor = self.buttonHighlightedTextColor;
-        if (!_showLettering) {
-            circleButton.buttonLabel.letteringLabel.text = nil;
-            circleButton.buttonLabel.verticallyCenterNumberLabel = YES;
-        }
     }
 
     [self setNeedsLayout];

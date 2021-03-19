@@ -88,6 +88,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** If set, the view controller will disable input until this date time has been reached */
 @property (nonatomic, strong, nullable) NSDate *disabledInputDate;
 
+@property (nonatomic, strong, nullable) UIColor *buttonColor;
+@property (nonatomic, strong, nullable) UIColor *textColor;
+@property (nonatomic, strong, nullable) UIColor *backgroundColor;
+
+
 /*
  Create a new instance with the desird light or dark style
 
